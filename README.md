@@ -6,3 +6,4 @@ Survival Analysis
 Course Structure
 - Experiment Tracking
 - Packaging 
+- Data Versioning

@@ -24,7 +24,6 @@ packaging==21.3
 pandas==1.4.1
 patsy==0.5.2
 Pillow==9.0.1
-pkg_resources==0.0.0
 progressbar==2.5
 pyarrow==7.0.0
 pydantic==1.9.0

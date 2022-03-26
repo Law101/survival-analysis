@@ -6,7 +6,7 @@ from churn import preprocess
 from churn.predict import get_prediction
 
 
-app = FastAPI()
+app = FastAPI(title="Survival API")
 
 artifact_path = Path('/mnt/c/Users/Lawrence/Downloads/Lawrence/survival-analysis/artifact/model.zip')
 data_path = Path('/mnt/c/Users/Lawrence/Downloads/Lawrence/survival-analysis/data/customer_churn.csv')
@@ -24,4 +24,4 @@ def predict(data_path: str):
     print(encoded_data)
     prediction = get_prediction(encoded_data, artifact_path)
     print(prediction)
-    return prediction.to_dict()
+    return prediction.to_dict(orient='records')

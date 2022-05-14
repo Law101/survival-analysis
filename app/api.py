@@ -1,15 +1,21 @@
 from fastapi import FastAPI, status, HTTPException, Depends
 from pathlib import Path
+import os
 import pandas as pd
 
 from churn import preprocess
 from churn.predict import get_prediction
 
+# Define project base directory
+def get_project_root() -> Path:
+    return Path(__file__).absolute().parent.parent
+
+PROJECT_BASE = get_project_root()
 
 app = FastAPI(title="Survival API")
 
-artifact_path = Path('/mnt/c/Users/Lawrence/Downloads/Lawrence/survival-analysis/artifact/model.zip')
-data_path = Path('/mnt/c/Users/Lawrence/Downloads/Lawrence/survival-analysis/data/customer_churn.csv')
+artifact_path = Path.joinpath(PROJECT_BASE, "artifact/model.zip")
+data_path = Path.joinpath(PROJECT_BASE, "data/customer_churn.csv")
 
 @app.get('/', status_code=status.HTTP_200_OK)
 def home():

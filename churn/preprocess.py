@@ -13,13 +13,11 @@ def one_hot_encoder(data: pd.DataFrame):
     """
 
     # Define categorical features
-    cat_features = ["product_travel_expense","product_payroll","product_accounting","company_size","us_region"]
-
+    cat_features = ["product_travel_expense", "product_payroll", "product_accounting", "company_size", "us_region"]
     # initialize OneHotEncoder
     one_hot = OneHotEncoder(drop_last_binary=True, drop_last=True, variables=cat_features)
     one_hot.fit(data)
     encoded_data = one_hot.transform(data)
-       
     return encoded_data
 
 

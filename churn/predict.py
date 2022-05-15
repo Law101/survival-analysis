@@ -18,8 +18,6 @@ def get_prediction(X, artifact_path):
         # survival function over time
         svf = model.predict_survival(X.values, t=t)     
         X["svf" + str(t)] = svf
-
     # risk score
     X["risk"] = model.predict_risk(X.values)
-
     return X

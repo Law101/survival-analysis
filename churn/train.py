@@ -3,10 +3,8 @@ import pandas as pd
 from pysurvival.utils import save_model, load_model
 from pysurvival.utils.display import integrated_brier_score, create_risk_groups
 from pysurvival.utils.metrics import concordance_index
-from pathlib import Path
 
 
-artifact_path = Path('/mnt/c/Users/Lawrence/Downloads/Lawrence/survival-analysis/artifact/model.zip')
 class Trainer:
 
     def __init__(self, model):
@@ -15,7 +13,7 @@ class Trainer:
         self.model = model
         # self.eval_metric = eval_metric
 
-    def train_step(self,  X, T, E):
+    def train_step(self,  X, T, E, artifact_path):
         # fitting a survival forest model
         self.model.fit(
                 X, 
@@ -35,7 +33,7 @@ class Trainer:
         return {"Model Finsihed Training"}
 
 
-    def eval_step(self, artifact_path, X, T, E):
+    def eval_step(self, X, T, E, artifact_path):
         # Load artifact
         model = load_model(artifact_path)
         # testing: model quality - prediction error measures by concordance index and Brier score

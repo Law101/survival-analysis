@@ -1,6 +1,7 @@
 from fastapi import FastAPI, status, HTTPException, Depends
 from pathlib import Path
 import os
+from . import schemas
 import pandas as pd
 
 from churn import preprocess
@@ -23,10 +24,10 @@ def home():
 
 
 @app.post('/predict', status_code=status.HTTP_200_OK)
-def predict(data_path: str):
-    data = pd.read_csv(data_path)
+def predict(survival_payload: schemas.SurvivalPayload):
+    payload_df = pd.json_normalize(survival_payload.dict())
     # data = pd.DataFrame(data)
-    encoded_data = preprocess.one_hot_encoder(data)
+    encoded_data = preprocess.one_hot_encoder(payload_df)
     print(encoded_data)
     prediction = get_prediction(encoded_data, artifact_path)
     print(prediction)

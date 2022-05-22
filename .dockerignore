@@ -1,0 +1,6 @@
+venv/
+experiment/
+.gitignore
+helpful_commands
+Dockerfile
+README.md

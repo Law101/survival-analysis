@@ -1,5 +1,6 @@
 venv/
 experiment/
+terraform/
 .gitignore
 helpful_commands
 Dockerfile
